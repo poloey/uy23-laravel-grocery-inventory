@@ -17,6 +17,8 @@
 
 Route::group(['middleware' => 'auth'], function () {
   Route::resource('inventory', 'ProductController');
+  Route::get('sale/today', 'SaleController@today')->name('sale.today');
+  Route::resource('sale', 'SaleController');
   Route::get('/', 'ProductController@index');
 });
 

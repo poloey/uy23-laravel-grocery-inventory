@@ -20,10 +20,10 @@
         <a class="nav-link" href="{{ route('inventory.index') }}">inventory <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('inventory.index') }}">Sales Report</a>
+        <a class="nav-link" href="{{ route('sale.index') }}">Total Sales Report</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('inventory.index') }}">Todays Report</a>
+        <a class="nav-link" href="{{ route('sale.today') }}">Todays Report</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ route('inventory.index') }}">add items</a>
@@ -48,6 +48,12 @@
   </div>
 </nav>
   @yield('content')
+
+  <div class='bg-dark text-white p-5'>
+    <div class='container'>
+      <h2>UY23 Inventory Management application</h2>
+    </div>
+  </div>
   <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
