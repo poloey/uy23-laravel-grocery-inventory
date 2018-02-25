@@ -26,10 +26,10 @@
         <a class="nav-link" href="{{ route('sale.today') }}">Todays Report</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('inventory.index') }}">add items</a>
+        <a class="nav-link" href="{{ route('inventory.create') }}">add items</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('inventory.index') }}">add sales</a>
+        <a class="nav-link" href="{{ route('sale.create') }}">add sales</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">

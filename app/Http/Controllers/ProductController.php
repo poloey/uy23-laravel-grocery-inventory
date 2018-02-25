@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use Session;
 
 class ProductController extends Controller
 {
@@ -25,7 +26,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('inventory.create');
     }
 
     /**
@@ -36,7 +37,18 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $this->validate($request, [
+        'name' => 'required|min:3',
+        'price' => 'required',
+        'quantity' => 'required',
+      ]);
+      Product::create([
+        'name' => $request->name,
+        'price' => $request->price,
+        'quantity' => $request->quantity,
+      ]);
+      Session::flash('message', 'Product added successfully');
+      return redirect()->back();
     }
 
     /**
