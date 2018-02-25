@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Sale;
+use App\Product;
+use Session;
 
 class SaleController extends Controller
 {
@@ -14,7 +16,7 @@ class SaleController extends Controller
      */
     public function index()
     {
-        $sales = Sale::all();
+        $sales = Sale::orderBy('date', 'desc')->paginate(10);
         return view('sale.index', compact('sales'));
     }
     public function today() {
@@ -29,7 +31,8 @@ class SaleController extends Controller
      */
     public function create()
     {
-        return view('sale.create');
+        $products = Product::where('quantity', '>',  0)->get();
+        return view('sale.create', compact('products'));
     }
 
     /**
@@ -40,7 +43,28 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $this->validate($request, [
+        'product_id' => 'required',
+        'quantity' => 'required',
+      ]);
+      $product_id = $request->input('product_id');
+      $quantity = $request->input('quantity');
+      $quantity = $request->input('quantity');
+      $product = Product::find($product_id);
+      if ($quantity > $product->quantity) {
+          return redirect()->back()->withErrors('Asking quantity is more than stock');
+      }
+      $product->quantity = $product->quantity - $quantity;
+      $product->save();
+      Sale::create([
+        'product_id' => $product_id,
+        'quantity' => $quantity,
+        'price' => $product->price,
+        'date' => date('Y-m-d')
+      ]);
+      Session::flash('message', 'Sales record added successfully');
+      return redirect()->back();
+
     }
 
     /**
@@ -85,6 +109,8 @@ class SaleController extends Controller
      */
     public function destroy($id)
     {
-        //
+      Sale::find($id)->delete();
+      Session::flash('message', 'One item delete from sales inventory');
+      return redirect()->back();
     }
 }

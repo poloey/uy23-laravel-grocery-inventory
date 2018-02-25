@@ -15,7 +15,7 @@ class SalesTableSeeder extends Seeder
       foreach (range(1, 5) as $i) {
         foreach (range(1, rand(1, 5)) as $k) {
           $date = date('Y-m-d');
-          $date = $date . " + {$i} days";
+          $date = $date . " - {$i} days";
           Sale::create([
             'product_id' => rand(1, count(Helpers::ITEMS)),
             'quantity' => rand(1, 10),

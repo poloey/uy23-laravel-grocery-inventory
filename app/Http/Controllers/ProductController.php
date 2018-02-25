@@ -15,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::orderBy('id', 'desc')->paginate(10);
         return view('inventory.index', compact('products'));
     }
 
@@ -93,6 +93,8 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+      Product::find($id)->delete();
+      Session::flash('message', 'Item delete from inventory list successfully');
+      return redirect()->back();
     }
 }

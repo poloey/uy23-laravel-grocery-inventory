@@ -16,19 +16,19 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="{{ route('inventory.index') }}">inventory <span class="sr-only">(current)</span></a>
+      <li class="nav-item {{ Request::is('inventory') ? 'active' : ''}}">
+        <a class="nav-link" href="{{ route('inventory.index') }}">inventory</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item {{ Request::is('sale') ? 'active' : ''}}">
         <a class="nav-link" href="{{ route('sale.index') }}">Total Sales Report</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item {{ Request::is('sale/today') ? 'active' : ''}}">
         <a class="nav-link" href="{{ route('sale.today') }}">Todays Report</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item {{ Request::is('inventory/create') ? 'active' : ''}}">
         <a class="nav-link" href="{{ route('inventory.create') }}">add items</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item {{ Request::is('sale/create') ? 'active' : ''}}">
         <a class="nav-link" href="{{ route('sale.create') }}">add sales</a>
       </li>
     </ul>
@@ -55,5 +55,6 @@
     </div>
   </div>
   <script src="{{ asset('js/app.js') }}"></script>
+  @yield('script')
 </body>
 </html>

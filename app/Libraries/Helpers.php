@@ -43,5 +43,5 @@ class Helpers {
       'email' => 'sakhawat@gmail.com'
     ]
   ];
-  const NUMBER_OF_SALES = 25;
+  const NUMBER_OF_SALES = 35;
 }
