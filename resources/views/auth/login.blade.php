@@ -9,7 +9,7 @@
 
                 <div class="card-body">
                   <div class='text-center'>
-                    <img width="400px" src='{{ asset('images/vegetable.jpg') }}' alt=''/>
+                    <img width="200" src='{{ asset('images/vegetable.jpg') }}' alt=''/>
                   </div>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
